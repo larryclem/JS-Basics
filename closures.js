@@ -10,15 +10,16 @@ var outer = function(){
 //Invoke outer saving the return value into another variable called 'inner'.
 
   //Code Here
+  var inner = outer()
 
 //Once you do that, invoke inner.
 
   //Code Here
 
+inner()
 
 
 //Next problem
-
 
 
 var callFriend = function(){
@@ -34,6 +35,8 @@ var callFriend = function(){
 
   //Code Here
 
+var callJake = callFriend()
+callJake("435-215-9248")
 
 
 //Next Problem
@@ -45,16 +48,21 @@ var callFriend = function(){
 */
 
   //Code Here
+  function makeCounter(){
+    var count =0;
+    return function(){
+      return ++count;
+      }
+    }
+
   var count = makeCounter();
   count(); // 1
   count(); // 2
   count(); // 3
   count(); // 4
-
-
+  
 
 //Next Problem
-
 
 
 /*
@@ -63,7 +71,24 @@ var callFriend = function(){
 
   //Code Here
 
+function codeLove(){
+  return "I love code";
+}
 
+function codeFriend(fun){
+   return function(){
+    var called = false;
+    if (!called === true){
+      called = true;
+      return fun();
+    }
+      else{
+        return null;
+      }
+  }
+}
+
+var codeEcho = codeFriend(codeLove)
 
 //Next Problem
 
@@ -73,7 +98,31 @@ var callFriend = function(){
   Now, similar to the last problem, write a function called 'fnCounter' that accepts two parameters. The first parameter will be an anonymous function and the second parameter, 'N', will be a number. Now, in 'fnCounter', allow the anonymous funciton to be invoked 'N' number of times. After it's been invoked 'N' number of times, return 'STOP'.
 */
 
+function fnCounter (anonymous, N) {
+  var i=1;
+  return function(){
+    if (i<=N) {
+      i++;
+      return anonymous();
+    }
+    else{
+      return "STOP";
+    }
+  }
+}
 
+function fnCounter (func, limit){
+  var timesCalled =0;
+  return function(){
+    if (timesCalled < limit){
+      timesCalled ++;
+      return func();
+      else{
+        return "STOP";
+      }
+    }
+  }
+}
 
 //Next Problem
 
@@ -90,7 +139,7 @@ var callFriend = function(){
 
   Above you have a function named counter. Examine the function (without running the code) then below write what you expect to happen when the funciton is invoked. *Hint: setTimeout calls a function or evaluates an expression after a specified number of milliseconds.
 
-    //Answer Here
+  
 
 
   Now, run the function in your console and note what happpens.
@@ -104,6 +153,15 @@ var callFriend = function(){
 */
 
     //Code Here
+
+ var counter = function(){
+    for (var i=1; i<=5; i++) {
+      setTimeout( function timer(num){
+          console.log( num );
+      }, i*1000, i );
+    }
+  };
+
 
 
 
@@ -123,5 +181,60 @@ var callFriend = function(){
 
   *Hint: Don't let this fool you. Break down what's really happening here.
 */
+
+
+
+function returnNum =
+function populate (){
+  var funcArray=[];
+  for (var i=0; i<5;i=++){
+    funcArray.push(returnNum(i))
+  }
+  return funcArray;
+}
+
+===============
+
+function truthTester (num){
+  if (!num === true){
+    return false;
+  }
+  else {
+    return true;
+  }
+}
+
+function myFunc(){
+  var num=0;
+  return function() {
+    num++;
+    return num;
+  }
+}
+
+function callbackFunc (num1, num2, func){
+  return function (){
+    return func(num1, num2);
+  }
+}
+
+// Write a function named 'sum' that will work using both invoke methods below
+
+
+console.log(sum(2, 3)); // 5
+console.log(sum(2)(3)); // 5
+
+function sum (n1, n2);{
+  if (!isNaN(n2)){
+    return n1 + n2;
+  }
+  return n1 + n2;
+}
+  else {return function(num){
+    return n1 + num;
+    }
+  }
+}
+
 
 
